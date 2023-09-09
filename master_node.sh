@@ -1,5 +1,13 @@
+echo "setting cgroup driver"
+echo "{
+    "exec-opts": ["native.cgroupdriver=systemd"]
+}" > /etc/docker/daemon.json
+systemctl daemon-reload
+systemctl restart docker
+systemctl restart kubelet
+
 echo "initializing kubernetes cluster"
-sudo kubeadm init --control-plane-endpoint kube-master:6443 --pod-network-cidr 192.168.150.0/23 --cri-socket=unix:///var/run/cri-dockerd.sock
+sudo kubeadm init --control-plane-endpoint kube-master:6443 --pod-network-cidr 192.168.150.0/23 --cri-socket=unix:///var/run/cri-dockerd.sock --ignore-preflight-errors=1
 echo "installing networking ext on master node"
 kubeadm init --pod-network-cidr=192.168.0.0/16
 mkdir -p $HOME/.kube
