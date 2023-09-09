@@ -1,4 +1,5 @@
 # FIXME: apply swapoff on bootup
+swappoff -a
 
 echo "please ensure required port 6443 is available"
 echo "installing docker engine"
