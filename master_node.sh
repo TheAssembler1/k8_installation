@@ -1,5 +1,5 @@
 echo "setting cgroup driver"
-mv ./daemon.json /etc/docker/daemon.json
+cp /home/vm_test/k8_installation/daemon.json /etc/docker/daemon.json
 systemctl daemon-reload
 systemctl restart docker
 systemctl restart kubelet
