@@ -1,14 +1,6 @@
+# FIXME: apply swapoff on bootup
 
 echo "please ensure required port 6443 is available"
-nc 127.0.0.1 6443
-
-read -p "Continue (y/n)?" choice
-case "$choice" in 
-  y|Y ) echo "yes";;
-  n|N ) echo "no";;
-  * ) echo "invalid";;
-esac
-
 echo "installing docker engine"
 echo "removing possibly conflicting packages"
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
